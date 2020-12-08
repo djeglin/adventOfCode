@@ -1,0 +1,17 @@
+{
+  "name": "AdventOfCode",
+  "version": "1.0.0",
+  "description": "My JS-based solutions for AdventOfCode",
+  "main": "index.js",
+  "repository": "https://github.com/djeglin/adventOfCode",
+  "author": "djeglin <djeglin@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1"
+  },
+  "scripts": {
+    "dev": "parcel serve ./index.html",
+    "build": "parcel build ./index.html"
+  }
+}
