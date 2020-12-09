@@ -23,7 +23,7 @@ export default class Solution {
     let trees = 0
     while (row < this.data.length - 1) {
       console.log('row:', row, 'col:', col, this.data[row])
-      if (row + down >= this.data.length - 1) break
+      if (row + down >= this.data.length) break
       if (col + right >= this.data[row].length) {
         col = right - (this.data[row].length - col)
       } else {
