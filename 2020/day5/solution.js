@@ -43,7 +43,6 @@ export default class Solution {
 
   findFreeSeat(seatIds) {
     let prev = 0
-    let seatId = null
     return seatIds.find((seat) => {
       if (seat === 0) return false
       if (prev === 0) {
