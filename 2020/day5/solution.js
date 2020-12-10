@@ -12,9 +12,12 @@ export default class Solution {
   }
 
   start() {
-    const seatIds = this.data.map((pass) => this.getSeatId(pass)).sort()
+    const seatIds = this.data
+      .map((pass) => this.getSeatId(pass))
+      .sort((a, b) => a - b)
+    const highest = seatIds[seatIds.length - 1]
     console.log(seatIds)
-    return seatIds.pop()
+    return this.findFreeSeat(seatIds) - 1
   }
 
   find(mode, pass) {
@@ -22,7 +25,7 @@ export default class Solution {
       mode === 'row' ? pass.slice(0, 7).split('') : pass.slice(-3).split('')
     if (!str.length) return false
     const possibles = mode === 'row' ? [...this.rows] : [...this.seats]
-    console.log(str)
+    // console.log(str)
     return str.reduce(
       (output, input) => {
         // console.log(output)
@@ -31,11 +34,29 @@ export default class Solution {
           output.slice(output.length / 2),
         ][this.actions.get(input)]
         const out = segment.length === 1 ? segment[0] : segment
-        console.log(out)
+        // console.log(out)
         return out
       },
       [...possibles]
     )
+  }
+
+  findFreeSeat(seatIds) {
+    let prev = 0
+    let seatId = null
+    return seatIds.find((seat) => {
+      if (seat === 0) return false
+      if (prev === 0) {
+        prev = seat
+        return false
+      }
+      if (seat === prev + 1) {
+        prev = seat
+        return false
+      } else {
+        return true
+      }
+    })
   }
 
   getSeatId(pass) {
