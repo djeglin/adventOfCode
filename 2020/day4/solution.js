@@ -12,6 +12,12 @@ export default class Solution {
   }
 
   start() {
+    const requiredFields = this.createFieldSpecs()
+    const validDocuments = this.checkPassports(requiredFields)
+    return validDocuments.length || 0
+  }
+
+  createFieldSpecs() {
     const requiredFields = new Map()
     requiredFields.set(
       'byr',
@@ -39,8 +45,7 @@ export default class Solution {
       ['amb', 'blu', 'brn', 'grn', 'gry', 'hzl', 'oth'].includes(val)
     )
     requiredFields.set('pid', (val) => val.length === 9 && !isNaN(Number(val)))
-    const validDocuments = this.checkPassports(requiredFields)
-    return validDocuments.length || 0
+    return requiredFields
   }
 
   checkPassports(requiredFields) {
